@@ -1,0 +1,27 @@
+---
+title: Secure GitHub Actions
+description: "Use OpenID Connect within your workflows to authenticate with cloud providers.."
+date: May 21 2022
+---
+## Secure cloud deployment ##
+
+OpenID Connect (OIDC) allows your GitHub Actions workflows to access resources in your cloud provider, without having to store any credentials as long-lived GitHub secrets.
+
+To use OIDC, you will first need to configure your cloud provider to trust GitHub's OIDC as a federated identity, and must then update your workflows to authenticate using tokens.
+
+```yaml
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/github-script@v6
+      id: script
+      timeout-minutes: 10
+      with:
+        debug: true
+        script: |
+          const token = process.env['ACTIONS_RUNTIME_TOKEN']
+          const runtimeUrl = process.env['ACTIONS_ID_TOKEN_REQUEST_URL']
+          core.setOutput('TOKEN', token.trim())
+          core.setOutput('IDTOKENURL', runtimeUrl.trim())
+```

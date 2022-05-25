@@ -1,0 +1,13 @@
+---
+title: Supercharged GitHub Actions
+description: "Supercharging GitHub Actions with Job Summaries."
+date: May 22 2022
+---
+## Create summaries ##
+
+Simply output Markdown content to a new environment variable we’ve introduced called $GITHUB_STEP_SUMMARY. Any Markdown content added to this file will then be displayed on the Actions run summary page. That’s it!
+```yaml
+steps:
+  - name: Adding markdown
+    run: echo '### Hello world! :rocket:' >> $GITHUB_STEP_SUMMARY
+```
