@@ -26,7 +26,7 @@ jobs:
         with:
           action: "upload"
           app_location: /
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APP }}
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APP_TOKEN }}
           output_location: "out"
           
           repo_token: ${{ secrets.GITHUB_TOKEN }}
